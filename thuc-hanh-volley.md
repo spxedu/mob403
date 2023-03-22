@@ -121,13 +121,15 @@ public class MainActivity extends AppCompatActivity {
         }
         );
 
-
+        queue.add(request);
 
     }
     void DemoPostVolley(){
 
     }
 }
+
+
 ```
 3. Vào file manifest khai bao quyền
 
@@ -135,6 +137,11 @@ public class MainActivity extends AppCompatActivity {
     <uses-permission android:name="android.permission.INTERNET" />
 
 ```
+trong thẻ <application khai báo thêm thuộc tính
+```
+android:usesCleartextTraffic="true"
+```
+
 
 
 
