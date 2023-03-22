@@ -129,7 +129,12 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
+3. Vào file manifest khai bao quyền
 
+```
+    <uses-permission android:name="android.permission.INTERNET" />
+
+```
 
 
 
