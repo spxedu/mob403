@@ -143,6 +143,71 @@ android:usesCleartextTraffic="true"
 ```
 
 
+4. Code hàm POST 
+
+```
+void DemoPostVolley(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        try {
+            // tạo dữ liệu để gửi lên API
+            JSONObject obj = new JSONObject();
+            obj.put("username", "nguyenvana");
+            obj.put("email", "nva@gmail.com");
+            obj.put("passwd","123");
+            // tạo request body để gửi lên server
+            final String reqBody = obj.toString();
+
+            StringRequest req = new StringRequest(Request.Method.POST,
+                    url_api,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // Nơi dữ liệu nhận về
+                            ed_content.setText( response );
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    ed_content.setText( error.getMessage()  );
+                }
+            }){
+                // phần gửi đi
+                @Override  // khai báo kiểu dữ liệu gửi lên API
+                public String getBodyContentType() {
+                    return "application/json/ charset=utf-8";
+                }
+
+                @Override // chuyển nội dung gửi thành mã byte
+                public byte[] getBody() throws AuthFailureError {
+
+                    if(reqBody == null)
+                        return null ;
+                    else
+                       return reqBody.getBytes(StandardCharsets.UTF_8);
+                }
+
+                @Override // bắt lỗi kết nối internet
+                protected VolleyError parseNetworkError(VolleyError volleyError) {
+//                    String response = "";
+//                    if(volleyError != null)
+//                        response =String.valueOf( volleyError.getMessage());
+
+                    return super.parseNetworkError(volleyError);
+                }
+            };
+
+            // add req vào quee
+            requestQueue.add(req );
+
+        }catch (JSONException e){
+            e.printStackTrace(); // ghi ra log cấu trúc lỗi
+        }
+
+
+    }
+    
+    ```
 
 
 
