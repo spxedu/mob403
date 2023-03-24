@@ -7,6 +7,7 @@ implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
 implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 ```
+Link API: https://63db6922a3ac95cec5a10e24.mockapi.io/demo-api/users 
 ## 1. Tạo file DTO để chuyển đổi dữ liệu
 
 ```
