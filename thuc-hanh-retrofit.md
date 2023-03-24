@@ -58,5 +58,43 @@ public interface UserInterface {
 
 }
 ```
-        
-        
+       
+## Viết hàm thực hiên GET ở trên activity
+
+```
+void DemoGETRetrofit (){
+        // tạo đối tượng chuyển đổi GSON
+        Gson gson = new GsonBuilder().setLenient().create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://63db6922a3ac95cec5a10e24.mockapi.io/demo-api/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        // sử dụng Interface
+        UserInterface userInterface = retrofit.create(UserInterface.class);
+        // tạo call
+        Call< List<UserDTO> > objCall = userInterface.lay_danh_sach();
+        // gọi get:
+        objCall.enqueue(new Callback<List<UserDTO>>() {
+            @Override
+            public void onResponse(Call<List<UserDTO>> call, retrofit2.Response<List<UserDTO>> response) {
+
+                if(response.isSuccessful()){
+                    List<UserDTO> dsTK = response.body();
+                    // bạn làm gì với cái list này thì tự bạn làm
+                    Log.d("zzzzzz", "Ket qua: " + dsTK.size());
+
+                }
+                else{
+                    Log.d("zzzz", "onResponse: lỗi " + response.errorBody() );
+                }
+
+            }
+            @Override
+            public void onFailure(Call<List<UserDTO>> call, Throwable t) {
+                Log.e("zzzzzzz", "onFailure: " + t.getMessage());
+            }
+        });
+
+    }
+```
