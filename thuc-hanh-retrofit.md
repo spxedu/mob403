@@ -98,3 +98,48 @@ void DemoGETRetrofit (){
 
     }
 ```
+
+## Viết hàm POST để thêm dữ liệu lên server 
+
+
+```
+void DemoPOSTRetrofit (){
+        // tạo đuối tượng chuyển đổi
+        Gson gson = new GsonBuilder().setLenient().create();
+        // tạo Retrofit
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://63db6922a3ac95cec5a10e24.mockapi.io/demo-api/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        // khởi tạo interface
+        UserInterface userInterface = retrofit.create(UserInterface.class);
+
+        // Tạo đối tượng DTO để gửi lên API
+        UserDTO objU = new UserDTO();
+        objU.setUsername("nva0001");
+        objU.setEmail("nva001@gmail.com");
+
+        // tạo obj call
+        Call<UserDTO> objCall = userInterface.them_moi_user( objU );
+
+        // Thực hiện gửi dữ liệu lên server
+        objCall.enqueue(new Callback<UserDTO>() {
+            @Override
+            public void onResponse(Call<UserDTO> call, retrofit2.Response<UserDTO> response) {
+                if(response.isSuccessful()){
+                    UserDTO obj = response.body();
+                    Log.d("zzzz", "onResponse: Kết quả post: " + obj.getEmail());
+                }else{
+                    Log.d("zzzz", "onResponse: Lỗi " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserDTO> call, Throwable t) {
+                Log.e("zzzz", "onFailure: " + t.getMessage() );
+            }
+        });
+ 
+    }
+    
+    ```
