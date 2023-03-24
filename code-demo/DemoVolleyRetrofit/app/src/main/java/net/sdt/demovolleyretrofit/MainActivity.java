@@ -214,7 +214,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("zzzz", "onResponse: Lỗi " + response.message());
                 }
             }
-
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
                 Log.e("zzzz", "onFailure: " + t.getMessage() );
