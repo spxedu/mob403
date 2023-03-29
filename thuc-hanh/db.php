@@ -15,5 +15,5 @@ try {
     echo 'Ket noi CSDL thanh cong';
 } catch (Exception $e) {
     
-    die('Loi ket noi CSDL: '. $e.getMessage() );
+    die('Loi ket noi CSDL: '. $e->getMessage() );
 }
