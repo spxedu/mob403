@@ -1,5 +1,6 @@
 <?php
  header('Content-Type: application/json; charset=utf-8');
+ require_once 'db.php'; // kết nối CSDL 
 // echo "API ";
 // echo '<pre>';
 // print_r( $_GET);
@@ -14,3 +15,4 @@ if( file_exists(  $file_path   ) )
     require_once $file_path;
 else
     die('File notfound: ' . $file );
+
