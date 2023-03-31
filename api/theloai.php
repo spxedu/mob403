@@ -37,7 +37,7 @@ function addTL(){
             $dataRes =[
                 'status'=>0,
                 'msg'=> 'Chưa nhập tên loại'
-            ]
+            ];
   
         }else{
             // đã nhập tên loại rồi ==> lưu vào CSDL
@@ -54,14 +54,14 @@ function addTL(){
                 $dataRes =[
                     'status'=>1,
                     'msg'=>  'Đã thêm thành công'
-                ]
+                ];
             
             } catch (PDOException $e) {
                  
                 $dataRes =[
                     'status'=>0,
                     'msg'=> 'Lỗi '. $e->getMessage()
-                ]
+                ];
             }
         }
 
